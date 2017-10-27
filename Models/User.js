@@ -2,13 +2,14 @@
 
 const express = require ('express')
 const mongoose = require ('mongoose')
+const Schema = mongoose.Schema
 const api = express()
-const autoIncrement = rquire ('mongoose-auto-increment')
+const autoIncrement = require ('mongoose-auto-increment')
 var connection  = mongoose.createConnection ('mongodb://localhost/laserTag')
 autoIncrement.initialize (connection)
 
-const UserSchema = Schema({
-  idUser: { type: Schema.Types.ObectId, ref: 'IdUser' },
+const UserSchema = new Schema({
+  idUser: { type: Schema.Types.ObjectId, ref: 'IdUser' },
   lp: Number,
   nickName: String,
   point: Number,

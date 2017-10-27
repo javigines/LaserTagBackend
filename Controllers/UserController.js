@@ -11,7 +11,8 @@ CODIGOS DE ERROR A APLICAR EN RES.STATUS:
 
 Hay muchos más, pero no los necesitamos en este caso concreto. Todos los métodos deben tratar estas excepciones.
 
-(Es el único y último comentario que os pongo en español, pero quería asegurarme de que lo entendiérais).
+(Es el único y último comentario
+rs que os pongo en español, pero quería asegurarme de que lo entendiérais).
 */
 function getUsers (req, res) {
   User.find({}, (err, users) => {
