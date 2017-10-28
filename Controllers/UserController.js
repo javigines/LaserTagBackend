@@ -23,25 +23,35 @@ function getUsers (req, res) {
   })
 }
 
-function getUSer (req, res) {
-  let id = req.params.id
-  User.find({idUser: id}, (err, user) => {
+function getUser (req, res) {
+  let nickName = req.query.nickName
+  console.log(nickName)
+  User.find({nickName: nickName}, (err, user) => {
     if(err) return res.status (500).send({message:`Error while processing request`})
     if(!user) return res.status(404).send({message: `No user found`});
-
+    console.log(user)
     res.status(200).send({user})
   })
 }
 
 function createUser (req, res) {
   let user = new User ()
-  user.lp: 100,
-  nickName: req.body.nickName,
-  point: 0,
-  IdG: null
+  user.lp= 100,
+  user.nickName= req.body.nickName,
+  user.point= 0,
+  //user.IdG= null
+  console.log(user)
+  user.save(function (err, userSaved) {
+    if(err) res.status(500).send({message: `Error while processing request: ${err}`});
+    else{
+      res.status(200).send({message: `User created`})
+    }
+  })
 }
 
 
 module.exports = {
-  getUsers
+  getUsers,
+  getUser,
+  createUser
 }
