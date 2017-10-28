@@ -5,9 +5,9 @@ const mongoose = require ('mongoose')
 const Schema = mongoose.Schema
 
 
-const DisparoSchema = new Schema({
+const ShotSchema = new Schema({
   idEmisor: String,
   idReceptor: String
 });
 
-module.exports= mongoose.model('Disparo', DisparoSchema)
+module.exports= mongoose.model('Shot', ShotSchema)

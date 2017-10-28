@@ -6,7 +6,7 @@ const api = express.Router()
 const UserController = require ('../Controllers/UserController')
 const MatchController = require ('../Controllers/MatchController')
 const GunsController = require ('../Controllers/GunController')
-const DisparoController = require ('../Controllers/DisparoController')
+const ShotController = require ('../Controllers/ShotController')
 
 //DEFINED ROUTES TO API METHODS
 
@@ -27,8 +27,8 @@ api.get('/getGun', GunsController.getGun)
 api.post('/createGun', GunsController.createGun)
 
 //rutina de disparos
-api.get('/getDisparos', DisparoController.getDisparos)
-api.get('/getDisparo', DisparoController.getDisparo)
-api.post('/createDisparo', DisparoController.createDisparo)
+api.get('/getShots', ShotController.getShots)
+api.get('/getShot', ShotController.getShot)
+api.post('/createShot', ShotController.createShot)
 
 module.exports = api
