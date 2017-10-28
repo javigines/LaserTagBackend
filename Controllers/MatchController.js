@@ -23,8 +23,6 @@ function getMatchs (req, res) {
 }
 
 
-<<<<<<< Updated upstream
-=======
 function getMatch (req, res){
   let IdMatch = req.query.IdMatch
   console.log(IdMatch)
@@ -52,7 +50,6 @@ function createMatch (req, res) {
 }
 
 
->>>>>>> Stashed changes
 function getMatchType (req, res){
 
 }

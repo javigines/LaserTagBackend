@@ -9,14 +9,22 @@ const GunsController = require ('../Controllers/GunController')
 const DisparoController = require ('../Controllers/DisparoController')
 
 //DEFINED ROUTES TO API METHODS
+
+//rutina de usuarios
 api.get('/getUsers', UserController.getUsers)
 api.get('/getUser', UserController.getUser)
 api.post('/createUser', UserController.createUser)
+
+//rutina de partida
+api.get('/getMatchs', MatchController.getMatchs)
 api.get('/getMatch', MatchController.getMatch)
-api.get('/getGuns', GunController.getGuns)+
-api.get('/getGun', GunController.getGun)
-api.post('/createGun', GunController.createGun)
+api.post('/createMatch', MatchController.createMatch)
+
+
+//rutina de pistolas
+api.get('/getGuns', GunsController.getGuns)
+
+//rutina de disparos
 api.get('/getDisparo', DisparoController.getDisparo)
-api.post('/createDisparo', DisparoController.createDisparo)
 
 module.exports = api
