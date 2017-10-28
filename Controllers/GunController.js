@@ -39,6 +39,9 @@ function createGun (req, res) {
     if(err) res.status(500).send({message: `Error while processing request: ${err}`});
     else{
       res.status(200).send({message: `Gun created`})
+    }
+  })
+}
 
 
 module.exports = {
