@@ -23,6 +23,10 @@ function getMatch (req, res) {
 }
 
 
+function getMatchType (req, res){
+
+}
+
 module.exports = {
   getMatch
 }

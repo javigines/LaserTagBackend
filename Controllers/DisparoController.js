@@ -13,6 +13,7 @@ Hay muchos más, pero no los necesitamos en este caso concreto. Todos los métod
 
 (Es el único y último comentario que os pongo en español, pero quería asegurarme de que lo entendiérais).
 */
+
 function getDisparo (req, res) {
   Disparo.find({}, (err, disparos) => {
     if(err) return res.status(500).send({message: `Error while processing request`})
@@ -26,6 +27,7 @@ function getOneDisparo (req,res){
     if(err) return res.status(500).send({message: `Error while processing request`})
     if(!disparo) return res.status(404).send({message: `No shots found`})
 
+<<<<<<< HEAD
     res.status(200).send({disparo})
   })
 }
@@ -44,6 +46,8 @@ function createDisparo (req, res) {
 
 
 
+=======
+>>>>>>> 5da9dfa6b8da7268846651bf1e42404716aa3f87
 module.exports = {
   getDisparo,
   createDisparo

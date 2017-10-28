@@ -15,7 +15,6 @@
     "express": "^4.16.2",
     "method-override": "^2.3.10",
     "mongoose": "~3.6.11",
-    "mongoose-auto-increment": "^5.0.1",
     "nodemon": "^1.12.1"
   },
   "devDependencies": {
