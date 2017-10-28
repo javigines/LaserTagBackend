@@ -39,12 +39,17 @@ function createUser (req, res) {
   user.lp= 100
   user.nickName= req.body.nickName
   user.point= 0
-  console.log(user)
-  user.save(function (err, userSaved) {
-    if(err) res.status(500).send({message: `Error while processing request: ${err}`});
-    else{
+  if(user.nickName == undefined)
+    return res.status(404).send({message: 'Error user undefined'})
+
+  User.findOne({nickName: user.nickName}, (err, users) => {
+    if(err) return res.status (500).send({message:`Error while processing request`})
+    if(users) return res.status(404).send({message: 'User already in database'})
+    user.save(function (err, userSaved) {
+      if(err) return res.status(500).send({message: `Error while processing request: ${err}`});
+
       res.status(200).send({message: `User created`})
-    }
+    })
   })
 }
 
