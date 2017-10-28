@@ -13,20 +13,52 @@ Hay muchos más, pero no los necesitamos en este caso concreto. Todos los métod
 
 (Es el único y último comentario que os pongo en español, pero quería asegurarme de que lo entendiérais).
 */
-function getMatch (req, res) {
-  Match.find({}, (err, IdMatch) => {
+function getMatchs (req, res) {
+  Match.find({}, (err, IdMatchs) => {
     if(err) return res.status(500).send({message: `Error while processing request`})
-    if(!IdMatch) return res.status(404).send({message: `No match found`})
+    if(!IdMatchs) return res.status(404).send({message: `No match found`})
 
-    res.status(200).send({ IdMatch })
+    res.status(200).send({ IdMatchs })
   })
 }
 
 
+<<<<<<< Updated upstream
+=======
+function getMatch (req, res){
+  let IdMatch = req.query.IdMatch
+  console.log(IdMatch)
+  Match.find({_id: IdMatch}, (err, match) => {
+    if(err) return res.status (500).send({message:`Error while processing request`})
+    if(!match) return res.status(404).send({message: `No match found`});
+    console.log(match)
+    res.status(200).send({match})
+  })
+}
+
+function createMatch (req, res) {
+  let match = new Match()
+  match.time = req.body.time
+  match.Type = req.body.Type
+  console.log(req.body.Players)
+
+  match.Players = req.body.Players
+  match.save(function (err, matchSaved) {
+    if(err) res.status(500).send({message: `Error while processing request: ${err}`});
+    else{
+      res.status(200).send({message: `Match created`})
+    }
+  })
+}
+
+
+>>>>>>> Stashed changes
 function getMatchType (req, res){
 
 }
 
 module.exports = {
-  getMatch
+  getMatchs,
+  getMatch,
+  createMatch
 }
