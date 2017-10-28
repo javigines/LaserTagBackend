@@ -14,17 +14,37 @@ Hay muchos más, pero no los necesitamos en este caso concreto. Todos los métod
 (Es el único y último comentario que os pongo en español, pero quería asegurarme de que lo entendiérais).
 */
 function getDisparo (req, res) {
-  Disparo.find({}, (err, disparo) => {
+  Disparo.find({}, (err, disparos) => {
+    if(err) return res.status(500).send({message: `Error while processing request`})
+    if(!disparo) return res.status(404).send({message: `No shots found`})
+
+    res.status(200).send({disparos})
+  })
+}
+function getOneDisparo (req,res){
+  Disparo.findOne({IdEmisor},(err, disparo)=> {
     if(err) return res.status(500).send({message: `Error while processing request`})
     if(!disparo) return res.status(404).send({message: `No shots found`})
 
     res.status(200).send({disparo})
   })
 }
-
+function createDisparo (req, res) {
+  let disparo = new Disparo ()
+  disparo.IdEmisor=req.body.IdEmisor;
+  disparo.IdReceptor=req.body.IdReceptor;
+  console.log(disparo)
+  disparo.save(function (err, userSaved) {
+    if(err) res.status(500).send({message: `Error while processing request: ${err}`});
+    else{
+      res.status(200).send({message: `Shot created`})
+    }
+  })
+}
 
 
 
 module.exports = {
-  getDisparo
+  getDisparo,
+  createDisparo
 }

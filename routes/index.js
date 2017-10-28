@@ -15,5 +15,6 @@ api.post('/createUser', UserController.createUser)
 api.get('/getMatch', MatchController.getMatch)
 api.get('/getGuns', GunsController.getGuns)
 api.get('/getDisparo', DisparoController.getDisparo)
+api.post('/createDisparo', DisparoController.createDisparo)
 
 module.exports = api

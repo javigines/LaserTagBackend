@@ -10,4 +10,4 @@ const DisparoSchema = new Schema({
   IdReceptor: String
 });
 
-module.exports= mongoose.model("Disparo", DisparoSchema)
+module.exports= mongoose.model('Disparo', DisparoSchema)
