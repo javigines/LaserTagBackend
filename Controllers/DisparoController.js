@@ -13,6 +13,7 @@ Hay muchos más, pero no los necesitamos en este caso concreto. Todos los métod
 
 (Es el único y último comentario que os pongo en español, pero quería asegurarme de que lo entendiérais).
 */
+
 function getDisparo (req, res) {
   Disparo.find({}, (err, disparo) => {
     if(err) return res.status(500).send({message: `Error while processing request`})
@@ -21,9 +22,6 @@ function getDisparo (req, res) {
     res.status(200).send({disparo})
   })
 }
-
-
-
 
 module.exports = {
   getDisparo

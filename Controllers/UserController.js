@@ -36,10 +36,9 @@ function getUser (req, res) {
 
 function createUser (req, res) {
   let user = new User ()
-  user.lp= 100,
-  user.nickName= req.body.nickName,
-  user.point= 0,
-  //user.IdG= null
+  user.lp= 100
+  user.nickName= req.body.nickName
+  user.point= 0
   console.log(user)
   user.save(function (err, userSaved) {
     if(err) res.status(500).send({message: `Error while processing request: ${err}`});
