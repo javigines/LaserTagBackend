@@ -6,8 +6,8 @@ const Schema = mongoose.Schema
 
 
 const DisparoSchema = new Schema({
-  IdEmisor: String,
-  IdReceptor: String
+  idEmisor: String,
+  idReceptor: String
 });
 
 module.exports= mongoose.model('Disparo', DisparoSchema)

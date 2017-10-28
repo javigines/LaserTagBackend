@@ -24,9 +24,9 @@ function getUsers (req, res) {
 }
 
 function getUser (req, res) {
-  let nickName = req.query.nickName
-  console.log(nickName)
-  User.find({nickName: nickName}, (err, user) => {
+  let nickname = req.query.nickname
+
+  User.findOne({nickname: nickname}, (err, user) => {
     if(err) return res.status (500).send({message:`Error while processing request`})
     if(!user) return res.status(404).send({message: `No user found`});
     console.log(user)
@@ -37,12 +37,12 @@ function getUser (req, res) {
 function createUser (req, res) {
   let user = new User ()
   user.lp= 100
-  user.nickName= req.body.nickName
+  user.nickname= req.body.nickname
   user.point= 0
-  if(user.nickName == undefined)
+  if(user.nickname == undefined)
     return res.status(404).send({message: 'Error user undefined'})
 
-  User.findOne({nickName: user.nickName}, (err, users) => {
+  User.findOne({nickname: user.nickname}, (err, users) => {
     if(err) return res.status (500).send({message:`Error while processing request`})
     if(users) return res.status(404).send({message: 'User already in database'})
     user.save(function (err, userSaved) {

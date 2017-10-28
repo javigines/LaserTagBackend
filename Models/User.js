@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
   lp: Number,
-  nickName: String,
+  nickname: String,
   point: Number
 });
 

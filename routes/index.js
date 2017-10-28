@@ -27,8 +27,8 @@ api.get('/getGun', GunsController.getGun)
 api.post('/createGun', GunsController.createGun)
 
 //rutina de disparos
+api.get('/getDisparos', DisparoController.getDisparos)
 api.get('/getDisparo', DisparoController.getDisparo)
-api.get('/getOneDisparo', DisparoController.getOneDisparo)
 api.post('/createDisparo', DisparoController.createDisparo)
 
 module.exports = api
