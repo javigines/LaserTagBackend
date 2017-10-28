@@ -1,4 +1,4 @@
-'use strict'
+  'use strict'
 
 const Gun = require ('../Models/Guns')
 
@@ -37,7 +37,7 @@ function deleteGun (req, res) {
   if(idGun == undefined)
     return res.status(404).send({message: 'Error gun undefined'})
 
-  Gun.findOne({idGun: idGun}, (err, users) => {
+  Gun.findOne({idGun: idGun}, (err, gun) => {
     if(err) return res.status (500).send({message:`Error while processing request`})
     if(!gun) return res.status(404).send({message: 'Gun not in database'})
 

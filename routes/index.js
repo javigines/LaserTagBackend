@@ -27,14 +27,14 @@ api.post('/createMatch', MatchController.createMatch)
 api.get('/getGuns', GunsController.getGuns)
 api.get('/getGun', GunsController.getGun)
 api.post('/createGun', GunsController.createGun)
-api.post('/deleteGun', GunController.deleteGun)
-api.get('/deleteAllGun', GunController.deleteAllGUn)
+api.post('/deleteGun', GunsController.deleteGun)
+api.get('/deleteAllGun', GunsController.deleteAllGun)
 
 //rutina de disparos
 api.get('/getShots', ShotController.getShots)
 api.get('/getShot', ShotController.getShot)
 api.post('/createShot', ShotController.createShot)
 api.post('/deleteShot', ShotController.deleteShot)
-api.get('/deleteAllGun', GunController.deleteAllGun)
+api.get('/deleteAllShot', ShotController.deleteAllShot)
 
 module.exports = api
