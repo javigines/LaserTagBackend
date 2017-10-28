@@ -9,3 +9,5 @@ const GunSchema = new Schema({
   IdGun: Number,
   Damage: Number
 });
+
+module.exports = mongoose.model('Gun', GunSchema)

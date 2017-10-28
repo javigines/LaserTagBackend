@@ -1,6 +1,6 @@
 'use strict'
 
-const User = require ('../Models/Match')
+const Match = require ('../Models/Match')
 
 /*
 CODIGOS DE ERROR A APLICAR EN RES.STATUS:
@@ -16,7 +16,7 @@ Hay muchos más, pero no los necesitamos en este caso concreto. Todos los métod
 function getMatch (req, res) {
   Match.find({}, (err, IdMatch) => {
     if(err) return res.status(500).send({message: `Error while processing request`})
-    if(!users) return res.status(404).send({message: `No match found`})
+    if(!IdMatch) return res.status(404).send({message: `No match found`})
 
     res.send(200, { IdMatch })
   })

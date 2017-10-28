@@ -1,6 +1,6 @@
 'use strict'
 
-const User = require ('../Models/Guns')
+const Gun = require ('../Models/Guns')
 
 /*
 CODIGOS DE ERROR A APLICAR EN RES.STATUS:
@@ -14,11 +14,11 @@ Hay muchos más, pero no los necesitamos en este caso concreto. Todos los métod
 (Es el único y último comentario que os pongo en español, pero quería asegurarme de que lo entendiérais).
 */
 function getGuns (req, res) {
-  User.find({}, (err, idGuns) => {
+  Gun.find({}, (err, idGuns) => {
     if(err) return res.status(500).send({message: `Error while processing request`})
-    if(!users) return res.status(404).send({message: `No guns found`})
+    if(!idGuns) return res.status(404).send({message: `No guns found`})
 
-    res.send(200, { IdGun })
+    res.send(200, { idGuns })
   })
 }
 

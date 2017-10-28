@@ -18,3 +18,5 @@ const UserSchema = new Schema({
 
 UserSchema.plugin (autoIncrement.plugin, 'IdUser')
 var IdUser = connection.model ('IdUser', UserSchema)
+
+module.exports = mongoose.model('User', UserSchema)

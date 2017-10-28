@@ -16,3 +16,5 @@ const MatchSchema = new Schema({
 
 MatchSchema.plugin (autoIncrement.plugin, 'IdMatch')
 var IdMatch = connection.model ('IdMatch', MatchSchema)
+
+module.exports = mongoose.model('Match', MatchSchema)
