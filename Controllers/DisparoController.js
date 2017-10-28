@@ -23,7 +23,7 @@ function getDisparo (req, res) {
   })
 }
 function getOneDisparo (req,res){
-  Disparo.findOne({IdEmisor},(err, disparo)=> {
+  Disparo.find({IdEmisor},(err, disparo)=> {
     if(err) return res.status(500).send({message: `Error while processing request`})
     if(!disparo) return res.status(404).send({message: `No shots found`})
     res.status(200).send({disparo})

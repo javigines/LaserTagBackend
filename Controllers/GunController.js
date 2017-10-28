@@ -21,8 +21,28 @@ function getGuns (req, res) {
     res.status(200).send({ idGuns })
   })
 }
+function getGun(req, res){
+  let gun = req.query.IdGun
+  Gun.find({IdGun : IdGUn}, (req,res)=>{
+    if(err) return res.status (500).send({message:`Error while processing request`})
+    if(!gun) return res.status(404).send({message: `No gun found`});
+    console.log(gun)
+    res.status(200).send({IdGun})
+  })
+}
+function createGun (req, res) {
+  let gun = new Gun ()
+  gun.IdGun =req.body.IdGun;
+  gun.Damage =req.body.Damage;
+  console.log(gun)
+  gun.save(function (err, gunSaved) {
+    if(err) res.status(500).send({message: `Error while processing request: ${err}`});
+    else{
+      res.status(200).send({message: `Gun created`})
 
 
 module.exports = {
-  getGuns
+  getGuns,
+  getGun,
+  createGun
 }

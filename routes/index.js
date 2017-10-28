@@ -13,7 +13,9 @@ api.get('/getUsers', UserController.getUsers)
 api.get('/getUser', UserController.getUser)
 api.post('/createUser', UserController.createUser)
 api.get('/getMatch', MatchController.getMatch)
-api.get('/getGuns', GunsController.getGuns)
+api.get('/getGuns', GunController.getGuns)+
+api.get('/getGun', GunController.getGun)
+api.post('/createGun', GunController.createGun)
 api.get('/getDisparo', DisparoController.getDisparo)
 api.post('/createDisparo', DisparoController.createDisparo)
 
