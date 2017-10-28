@@ -19,7 +19,7 @@ function getUsers (req, res) {
     if(err) return res.status(500).send({message: `Error while processing request`})
     if(!users) return res.status(404).send({message: `No users found`})
 
-    res.send(200, { users })
+    res.status(200).send({ users })
   })
 }
 

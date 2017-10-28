@@ -18,7 +18,7 @@ function getGuns (req, res) {
     if(err) return res.status(500).send({message: `Error while processing request`})
     if(!idGuns) return res.status(404).send({message: `No guns found`})
 
-    res.send(200, { idGuns })
+    res.status(200).send({ idGuns })
   })
 }
 

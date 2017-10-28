@@ -18,7 +18,7 @@ function getMatch (req, res) {
     if(err) return res.status(500).send({message: `Error while processing request`})
     if(!IdMatch) return res.status(404).send({message: `No match found`})
 
-    res.send(200, { IdMatch })
+    res.status(200).send({ IdMatch })
   })
 }
 
