@@ -23,6 +23,24 @@ function getUsers (req, res) {
   })
 }
 
+function getUSer (req, res) {
+  let id = req.params.id
+  User.find({idUser: id}, (err, user) => {
+    if(err) return res.status (500).send({message:`Error while processing request`})
+    if(!user) return res.status(404).send({message: `No user found`});
+
+    res.status(200).send({user})
+  })
+}
+
+function createUser (req, res) {
+  let user = new User ()
+  user.lp: 100,
+  nickName: req.body.nickName,
+  point: 0,
+  IdG: null
+}
+
 
 module.exports = {
   getUsers
