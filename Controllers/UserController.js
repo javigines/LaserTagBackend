@@ -53,9 +53,45 @@ function createUser (req, res) {
   })
 }
 
+function deleteUser (req, res) {
+  let nickname = req.body.nickname
+
+  if(nickname == undefined)
+    return res.status(404).send({message: 'Error user undefined'})
+
+  User.findOne({nickname: nickname}, (err, users) => {
+    if(err) return res.status (500).send({message:`Error while processing request`})
+    if(!users) return res.status(404).send({message: 'User not in database'})
+
+    User.remove({nickname: nickname}).exec((err, userDeleted) => {
+      if(err) return res.status(500).send({message: `Error while processing request: ${err}`})
+      if(!userDeleted) return res.status(404).send({message: ''})
+
+      res.status(200).send({message: `User deleted`})
+    })
+  })
+}
+
+function deleteAllUser (req, res) {
+
+  User.find({}, (err, users) => {
+    if(err) return res.status (500).send({message:`Error while processing request`})
+    if(!users) return res.status(404).send({message: 'User not in database'})
+
+    User.remove(users).exec((err, userDeleted) => {
+      if(err) return res.status(500).send({message: `Error while processing request: ${err}`})
+      if(!userDeleted) return res.status(404).send({message: 'Not user in database'})
+
+      res.status(200).send({message: `All user deleted`})
+    })
+  })
+}
+
 
 module.exports = {
   getUsers,
   getUser,
-  createUser
+  createUser,
+  deleteUser,
+  deleteAllUser
 }

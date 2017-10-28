@@ -14,6 +14,8 @@ const ShotController = require ('../Controllers/ShotController')
 api.get('/getUsers', UserController.getUsers)
 api.get('/getUser', UserController.getUser)
 api.post('/createUser', UserController.createUser)
+api.post('/deleteUser', UserController.deleteUser)
+api.get('/deleteAllUser', UserController.deleteAllUser)
 
 //rutina de partida
 api.get('/getMatchs', MatchController.getMatchs)
