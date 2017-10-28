@@ -36,7 +36,6 @@ function getUser (req, res) {
 
 function createUser (req, res) {
   let user = new User ()
-  user.lp= 100
   user.nickname= req.body.nickname
   user.point= 0
   if(user.nickname == undefined)

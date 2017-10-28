@@ -4,8 +4,9 @@ const mongoose = require ('mongoose')
 const Schema = mongoose.Schema
 
 const MatchSchema = new Schema({
-  time: Date,
-  players: [{}],
+  time: String,
+  duracion: Number,
+  teams: [{}],
   type: String
 });
 
