@@ -46,6 +46,40 @@ function createMatch (req, res) {
   })
 }
 
+function deleteMatch (req, res) {
+  let idMatch = req.body.idMatch
+
+  if(idMatch == undefined)
+    return res.status(404).send({message: 'Error match undefined'})
+
+  Match.findOne({_id: idMatch}, (err, match) => {
+    if(err) return res.status (500).send({message:`Error while processing request`})
+    if(!match) return res.status(404).send({message: 'Match not in database'})
+
+    Match.remove({_id: idMatch}).exec((err, matchDeleted) => {
+      if(err) return res.status(500).send({message: `Error while processing request: ${err}`})
+      if(!matchDeleted) return res.status(404).send({message: ''})
+
+      res.status(200).send({message: `match deleted`})
+    })
+  })
+}
+
+function deleteAllMatch (req, res) {
+
+  Match.find({}, (err, matchs) => {
+    if(err) return res.status (500).send({message:`Error while processing request`})
+    if(!matchs) return res.status(404).send({message: 'Match not in database'})
+
+    Match.remove(matchs).exec((err, matchDeleted) => {
+      if(err) return res.status(500).send({message: `Error while processing request: ${err}`})
+      if(!matchDeleted) return res.status(404).send({message: 'Not match in database'})
+
+      res.status(200).send({message: `All matchs deleted`})
+    })
+  })
+}
+
 
 function getMatchType (req, res){
 
@@ -54,5 +88,7 @@ function getMatchType (req, res){
 module.exports = {
   getMatchs,
   getMatch,
-  createMatch
+  createMatch,
+  deleteMatch,
+  deleteAllMatch
 }

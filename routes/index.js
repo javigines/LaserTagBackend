@@ -21,6 +21,8 @@ api.get('/deleteAllUser', UserController.deleteAllUser)
 api.get('/getMatchs', MatchController.getMatchs)
 api.get('/getMatch', MatchController.getMatch)
 api.post('/createMatch', MatchController.createMatch)
+api.post('/deleteMatch', MatchController.deleteMatch)
+api.get('/deleteAllMatch', MatchController.deleteAllMatch)
 
 
 //rutina de pistolas
