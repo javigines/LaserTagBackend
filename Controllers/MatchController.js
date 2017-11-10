@@ -28,7 +28,7 @@ function createMatch (req, res) {
   let match = new Match()
   let user = new User()
   match.time = moment().add(1.5, "minutes").unix()
-  match.duracion = req.body.time
+  match.duration = req.body.time
   // match.type = req.body.type
   match.teams = req.body.teams
   var users = []

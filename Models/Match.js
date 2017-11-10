@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 
 const MatchSchema = new Schema({
   time: String,
-  duracion: Number,
+  duration: Number,
   teams: [{}],
   type: String
 });
