@@ -1,6 +1,7 @@
 'use strict'
 
 const Shot = require ('../Models/Shot')
+const Match = require ('../Models/Shot')
 
 function getShots (req, res) {
   Shot.find({}, (err, shots) => {
@@ -24,6 +25,7 @@ function createShot (req, res) {
   shot.save(function (err, userSaved) {
     if(err) res.status(500).send({message: `Error while processing request: ${err}`});
     else{
+      console.log(Match.find().sort({time: 1}).limit(1));
       res.status(200).send({message: `Shot created`})
     }
   })
@@ -34,11 +36,11 @@ function deleteShot (req, res) {
   if(idEmisor == undefined)
     return res.status(404).send({message: 'Error shot undefined'})
 
-  Shot.findOne({idEmisor: idEmisor}, (err, users) => {
+  Shot.findOne({idEmisor: idEmisor}, (err, shots) => {
     if(err) return res.status (500).send({message:`Error while processing request`})
     if(!shots) return res.status(404).send({message: 'Shot not in database'})
 
-    shots.remove({idEmisor: idEmisor}).exec((err, shotDeleted) => {
+    Shot.remove({idEmisor: idEmisor}).exec((err, shotDeleted) => {
       if(err) return res.status(500).send({message: `Error while processing request: ${err}`})
       if(!shotDeleted) return res.status(404).send({message: ''})
 
@@ -48,11 +50,11 @@ function deleteShot (req, res) {
 }
 function deleteAllShot (req, res) {
 
-  Shot.find({}, (err, users) => {
+  Shot.find({}, (err, shots) => {
     if(err) return res.status (500).send({message:`Error while processing request`})
     if(!shots) return res.status(404).send({message: 'Shot not in database'})
 
-    Shot.remove(users).exec((err, shotDeleted) => {
+    Shot.remove(shots).exec((err, shotDeleted) => {
       if(err) return res.status(500).send({message: `Error while processing request: ${err}`})
       if(!shotDeleted) return res.status(404).send({message: 'Not shot in database'})
 
@@ -60,6 +62,25 @@ function deleteAllShot (req, res) {
     })
   })
 }
+
+function Decrease (){
+  match.find({},(err,match)=>{
+    while(!find){
+      if(match.team[i].idGun==idReceptor)
+        find=true
+      else
+        i++
+    }
+    if(i<match.teams.length){
+      var id=match.teams[i].idUser
+      user.find({_id:id},(err,user)=>{
+        user.lp-=damage
+        })
+    }
+  })
+}
+
+
 module.exports = {
   getShots,
   getShot,

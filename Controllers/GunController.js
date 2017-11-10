@@ -1,6 +1,6 @@
 'use strict'
 
-const Gun = require ('../Models/Guns')
+const Gun = require ('../Models/Gun')
 
 function getGuns(req, res) {
   Gun.find({}, (err, guns) => {

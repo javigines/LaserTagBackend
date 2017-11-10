@@ -10,21 +10,21 @@ const ShotController = require ('../Controllers/ShotController')
 
 //DEFINED ROUTES TO API METHODS
 
-//rutina de usuarios
+//Users
 api.get('/getUsers', UserController.getUsers)
 api.get('/getUser', UserController.getUser)
 api.post('/createUser', UserController.createUser)
 api.post('/deleteUser', UserController.deleteUser)
 api.get('/deleteAllUser', UserController.deleteAllUser)
 
-//rutina de partida
+//Match
 api.get('/getMatchs', MatchController.getMatchs)
 api.get('/getMatch', MatchController.getMatch)
 api.post('/createMatch', MatchController.createMatch)
 api.post('/deleteMatch', MatchController.deleteMatch)
 api.get('/deleteAllMatch', MatchController.deleteAllMatch)
 
-//rutina de pistolas
+//Guns
 api.get('/getGuns', GunsController.getGuns)
 api.get('/getGun', GunsController.getGun)
 api.post('/createGun', GunsController.createGun)
@@ -32,7 +32,7 @@ api.put('/updateGun', GunsController.updateGun)
 api.delete('/deleteGun', GunsController.deleteGun)
 api.delete('/deleteAllGuns', GunsController.deleteAllGuns)
 
-//rutina de disparos
+//Shots
 api.get('/getShots', ShotController.getShots)
 api.get('/getShot', ShotController.getShot)
 api.post('/createShot', ShotController.createShot)
