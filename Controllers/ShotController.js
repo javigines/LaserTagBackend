@@ -1,7 +1,8 @@
 'use strict'
 
 const Shot = require ('../Models/Shot')
-const Match = require ('../Models/Shot')
+const Match = require ('../Models/Match')
+const Users = require ('../Models/User')
 
 function getShots (req, res) {
   Shot.find({}, (err, shots) => {
@@ -11,6 +12,8 @@ function getShots (req, res) {
     res.status(200).send({shots})
   })
 }
+
+
 function getShot (req,res){
   Shot.find({idEmisor: req.query.idEmisor},(err, shot)=> {
     if(err) return res.status(500).send({message: `Error while processing request`})
@@ -18,23 +21,31 @@ function getShot (req,res){
     res.status(200).send({shot})
   })
 }
+
+
 function createShot (req, res) {
   let shot = new Shot ()
   shot.idEmisor=req.body.idEmisor;
   shot.idReceptor=req.body.idReceptor;
-  shot.save(function (err, userSaved) {
-    if(err) res.status(500).send({message: `Error while processing request: ${err}`});
-    else{
-      console.log(Match.find().sort({time: 1}).limit(1));
-      res.status(200).send({message: `Shot created`})
-    }
-  })
+
+  if(canModify(shot.idEmisor)) {
+    shot.save(function (err, userSaved) {
+      if(err) res.status(500).send({message: `Error while processing request: ${err}`});
+      else{
+        console.log(Match.find().sort({time: 1}).limit(1));
+        res.status(200).send({message: `Shot created`})
+      }
+    })
+  } else
+    res.status(200).send({message: `Match not in progress or user death`})
 }
+
+
 function deleteShot (req, res) {
   let idEmisor = req.body.idEmisor
 
   if(idEmisor == undefined)
-    return res.status(404).send({message: 'Error shot undefined'})
+  return res.status(404).send({message: 'Error shot undefined'})
 
   Shot.findOne({idEmisor: idEmisor}, (err, shots) => {
     if(err) return res.status (500).send({message:`Error while processing request`})
@@ -48,6 +59,8 @@ function deleteShot (req, res) {
     })
   })
 }
+
+
 function deleteAllShot (req, res) {
 
   Shot.find({}, (err, shots) => {
@@ -63,19 +76,53 @@ function deleteAllShot (req, res) {
   })
 }
 
+function canModify(idEmisor) {
+  var encontrado = false
+  var i = 0
+
+  //Match is live????
+  var gun="teams."+i+".idGun"
+
+  Match.findOne({
+    "startTime": { $lte: Date.now()},
+    "finishTime": { $gte: Date.now()},
+    "teams.0.idGun": { $eq: idEmisor}
+
+  }, (err, match) => {
+    if(!err && match) {
+      encontrado = true
+
+      console.log("test");
+
+      var userId = match.teams.find(o => o.idUser == idEmisor)
+
+      //User is live????
+      Users.findOne({_id: userId}, (err, user) => {
+        if(err || !user) return false
+
+        if(!user.lp || user.lp <= 0) return false
+        //Player is alive
+        return true
+
+      })
+    }
+  })
+
+}
+
 function Decrease (){
   match.find({},(err,match)=>{
     while(!find){
       if(match.team[i].idGun==idReceptor)
-        find=true
+      find=true
       else
-        i++
+      i++
     }
     if(i<match.teams.length){
       var id=match.teams[i].idUser
       user.find({_id:id},(err,user)=>{
         user.lp-=damage
-        })
+      })
     }
   })
 }

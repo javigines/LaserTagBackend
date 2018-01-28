@@ -1,7 +1,6 @@
 'use strict'
 
 const Match = require ('../Models/Match')
-const moment = require ("moment")
 const User = require ("../Models/User")
 
 function getMatchs (req, res) {
@@ -25,10 +24,11 @@ function getMatch (req, res){
 }
 
 function createMatch (req, res) {
+  var additionalTime = 0.25 * 60 * 1000
   let match = new Match()
   let user = new User()
-  match.time = moment().add(1.5, "minutes").unix()
-  match.duration = req.body.time
+  match.startTime = Date.now() + additionalTime
+  match.finishTime = match.startTime + req.body.time * 1000
   // match.type = req.body.type
   match.teams = req.body.teams
   var users = []
