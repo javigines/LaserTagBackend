@@ -1,4 +1,6 @@
-# LaserTagBackend
+# LaserTagBackend - (Deprecated)
+
+New Version: https://github.com/CoreDumped-ETSISI/CoreLaserTag
 
 API-REST for a LaserTag game.
 
